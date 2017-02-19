@@ -28,7 +28,7 @@ class SegDataset(object):
   def get_str_id(self, idx):
     return str(idx)
 
-  def get_dataset_size(self):
+  def get_size(self):
     """Get number of examples."""
     return len(self.img_ids)
 
@@ -73,7 +73,7 @@ class SegDataset(object):
       variables = set(["input", "label_sem_seg"])
 
     with h5py.File(self.h5_fname, "r") as h5f:
-      img_ids = self.img_ids[idx]
+      img_ids = [self.img_ids[_idx] for _idx in idx]
       key = self.get_str_id(img_ids[0])
       num_ex = len(idx)
       created_arr = False
@@ -185,14 +185,11 @@ class SegDataset(object):
                   cid = 255  # Background class.
                 else:
                   cid = jj - 1  # Other classes.
-                cstr = "{:03d}".format(jj)
+                cstr = "{:03d}".format(cid)
                 if cstr in c_gt_group:
                   c_gt_str = c_gt_group[cstr][:]
-                  results["label_sem_seg"][kk, :, :, cid] = cv2.imdecode(
+                  results["label_sem_seg"][kk, :, :, jj] = cv2.imdecode(
                       c_gt_str, -1).astype(np.float32)
-              # Background class, everything else.
-              results["label_sem_seg"][kk, :, :, 0] = 1 - \
-                  results["label_sem_seg"][kk].max(axis=2)
             else:
               c_gt_str = c_gt_group["000"][:]
               results["label_sem_seg"][kk, :, :, 0] = cv2.imdecode(

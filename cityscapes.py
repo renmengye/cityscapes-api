@@ -127,7 +127,7 @@ class Cityscapes(SegDataset):
     return idx
 
   def get_num_semantic_classes(self):
-    return 20
+    return 19
 
   def get_default_timespan(self):
     """Maximum number of objects."""
