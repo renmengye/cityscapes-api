@@ -3,9 +3,9 @@ from __future__ import (absolute_import, division, print_function,
 
 import cv2
 import h5py
-import logger
+from . import logger
 import numpy as np
-import orientation as orient
+from . import orientation as orient
 
 from tqdm import tqdm
 

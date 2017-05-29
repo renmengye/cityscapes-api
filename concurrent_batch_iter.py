@@ -1,10 +1,11 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
-import Queue
+from builtins import range
+import queue
 import threading
 
-import logger
-from batch_iter import IBatchIterator, BatchIterator
+from . import logger
+from .batch_iter import IBatchIterator, BatchIterator
 
 
 class BatchProducer(threading.Thread):
@@ -89,7 +90,7 @@ class ConcurrentBatchIterator(IBatchIterator):
     pass
 
   def init_fetchers(self):
-    for ii in xrange(self.num_threads):
+    for ii in range(self.num_threads):
       f = BatchProducer(self.q, self.batch_iter)
       f.start()
       self.fetchers.append(f)
