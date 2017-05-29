@@ -3,9 +3,9 @@ from __future__ import (absolute_import, division, print_function,
 
 import os
 
-from batch_iter import BatchIterator
-from concurrent_batch_iter import ConcurrentBatchIterator
-from cityscapes import Cityscapes
+from .batch_iter import BatchIterator
+from .concurrent_batch_iter import ConcurrentBatchIterator
+from .cityscapes import Cityscapes
 
 
 def get_dataset(name, split, folder="/ais/gobi4/mren/data/cityscapes/sem_seg"):

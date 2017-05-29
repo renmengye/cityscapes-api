@@ -1,6 +1,6 @@
 import os
 
-from cityscapes import CityscapesAssembler
+from .cityscapes import CityscapesAssembler
 from six.moves import input
 
 

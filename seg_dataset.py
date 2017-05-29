@@ -3,7 +3,7 @@ from __future__ import (absolute_import, division, print_function,
 
 import cv2
 import h5py
-import logger
+from . import logger
 import numpy as np
 
 
@@ -19,7 +19,7 @@ class SegDataset(object):
   def _read_ids(self):
     self.log.info(self.h5_fname)
     with h5py.File(self.h5_fname, "r") as h5f:
-      idx = h5f.keys()
+      idx = list(h5f.keys())
     return idx
 
   def get_name(self):

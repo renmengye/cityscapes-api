@@ -97,7 +97,7 @@ class Logger(object):
     """
     if t is None:
       t = datetime.datetime.now()
-    timestr = t.isoformat(b" ")
+    timestr = t.isoformat(" ")
     return timestr
 
   def log(self, message, typ="info", verbose=None):
